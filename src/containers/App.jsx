@@ -8,18 +8,12 @@ import Footer from '../components/Footer'
 
 import '../assets/styles/App.scss'
 
+import useInitialState from '../hooks/useInitialState'
+
 const App = () => {
-    const [videos, setVideos ] = useState([])
-
-    useEffect(() => {
-        fetch('http://localhost:3000/initalState')
-            .then(response => response.json())
-            .then(data => setVideos(data))
-    }, [])
-    console.log(videos)
-
-    const { mylist, originals, trends } = videos
-
+    
+    const { mylist, originals, trends } = useInitialState('http://localhost:3000/initalState')
+console.log(originals)
     return (
         <div className="App">
             <Header />
