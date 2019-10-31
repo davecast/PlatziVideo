@@ -1,10 +1,12 @@
 .carousel {
-    overflow: scroll;
+    overflow: hidden;
     padding-left: 30px;
     width: 100%;
     position: relative;
 }
-
+.carousel--scroll {
+    overflow: scroll;
+}
 .carousel__container {
     transition: 450ms -webkit-transform;
     transition: 450ms transform;
