@@ -6,16 +6,16 @@ import Carousel from '../components/Carousel'
 import CarouselItem from '../components/CarouselItem'
 import Footer from '../components/Footer'
 
-import '../assets/styles/App.scss'
+import '../assets/styles/Home.scss'
 
 import useInitialState from '../hooks/useInitialState'
 
-const App = () => {
+const Home = () => {
     
     const { mylist, originals, trends } = useInitialState('http://localhost:3000/initalState')
 console.log(originals)
     return (
-        <div className="App">
+        <div className="Home">
             <Header />
             <Search />
             {
@@ -23,7 +23,7 @@ console.log(originals)
                     <Carousel has={mylist} >
                     {
                         mylist.length === 0 ? 
-                            <h2 className="App__empty">No posees videos para mostrar</h2> 
+                            <h2 className="Home__empty">No posees videos para mostrar</h2> 
                         : 
                             mylist.map((list) =>  {
                                     
@@ -42,7 +42,7 @@ console.log(originals)
                     <Carousel has={originals} >
                     {
                         originals.length === 0 ? 
-                            <h2 className="App__empty">No posees videos para mostrar</h2> 
+                            <h2 className="Home__empty">No posees videos para mostrar</h2> 
                         : 
                             originals.map((original) =>  {
                                     
@@ -61,7 +61,7 @@ console.log(originals)
                     <Carousel has={trends} >
                     {
                         trends.length === 0 ? 
-                            <h2 className="App__empty">No posees videos para mostrar</h2> 
+                            <h2 className="Home__empty">No posees videos para mostrar</h2> 
                         : 
                             trends.map((trend) =>  {
                                     
@@ -80,4 +80,4 @@ console.log(originals)
     )
 }
 
-export default App
+export default Home
