@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import Header from '../components/Header'
+import React from 'react'
+import { connect } from 'react-redux'
+
 import Search from '../components/Search'
 import Categories from '../components/Categories'
 import Carousel from '../components/Carousel'
 import CarouselItem from '../components/CarouselItem'
-import Footer from '../components/Footer'
 
 import '../assets/styles/Home.scss'
 
 import useInitialState from '../hooks/useInitialState'
 
-const Home = () => {
-    
-    const { mylist, originals, trends } = useInitialState('http://localhost:3000/initalState')
-console.log(originals)
+const Home = ({ myList, trends, originals }) => {
     return (
-        <div className="Home">
-            <Header />
+        <>
             <Search />
             {
-                mylist && <Categories title="Mi lista">
-                    <Carousel has={mylist} >
+                <Categories title="Mi lista">
+                    <Carousel has={myList.length} >
                     {
-                        mylist.length === 0 ? 
+                        myList.length === 0 ? 
                             <h2 className="Home__empty">No posees videos para mostrar</h2> 
                         : 
-                            mylist.map((list) =>  {
+                            myList.map((list) =>  {
                                     
                                 return (
-                                    <CarouselItem key={list.id} {...list} />
+                                    <CarouselItem 
+                                        key={list.id} 
+                                        {...list} 
+                                        isList
+                                    />
                                 )
                             })
                     }
@@ -38,8 +38,8 @@ console.log(originals)
             }
             
             {
-                originals && <Categories title="Favoritos">
-                    <Carousel has={originals} >
+                <Categories title="Favoritos">
+                    <Carousel has={originals.length} >
                     {
                         originals.length === 0 ? 
                             <h2 className="Home__empty">No posees videos para mostrar</h2> 
@@ -57,8 +57,8 @@ console.log(originals)
             }
     
             {
-                trends && <Categories title="Mas Usados">
-                    <Carousel has={trends} >
+                <Categories title="Mas Usados">
+                    <Carousel has={trends.length} >
                     {
                         trends.length === 0 ? 
                             <h2 className="Home__empty">No posees videos para mostrar</h2> 
@@ -75,9 +75,16 @@ console.log(originals)
                 </Categories>
             }
     
-            <Footer />
-        </div>
+        </>
     )
 }
 
-export default Home
+const mapStateToProps = state => {
+    return {
+        myList: state.myList,
+        trends: state.trends,
+        originals: state.originals,
+    }
+}
+
+export default connect(mapStateToProps, null)(Home)

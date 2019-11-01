@@ -8,7 +8,9 @@
     top: 0px;
     width: 100%;
   }
-  
+  .header--green {
+    background-color: #21c08b;
+  }
   .header__img {
     margin-left: 30px;
     width: 200px;
@@ -21,11 +23,12 @@
   .header__menu ul {
     display: none;
     list-style: none;
-    margin: 0px 0px 0px -14px;
+    margin: 0px 0px 0px 0px;
     padding: 0px;
     position: absolute;
     width: 100px;
     text-align: right;
+    right: 30px;
   }
   
   .header__menu:hover ul, ul:hover {

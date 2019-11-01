@@ -5,11 +5,10 @@ body {
     margin: 0;
     font-family: $theme-font;
     background: $main-color;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
-* {
-    box-sizing: border-box;
-}
 .Home__empty {
     font-size: 14px;
     line-height: 14px;
